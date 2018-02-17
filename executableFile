@@ -1,0 +1,50 @@
+#Import my files
+
+import importingFiles as imp
+import entropies as ent
+
+#Import relevant libraries
+
+import numpy as np
+#from openpyxl import load_workbook
+
+#Gets the name of the excel file and the sheet from the user
+def userInfo():
+    fileName = input("Name of file (without .xlsx) in single quotes ")
+    relevantSheet = 'Sheet' + input("Number of sheet in single quotes ")
+    size = input("Number of classes ")
+    
+    return fileName, relevantSheet, size
+
+#Calculates Shanon Entropy
+def calculateShanonEntropy(allData):
+    shanonEntropies = np.zeros((size, 2), dtype = float)
+    for i in range(size):
+        shanon = ent.shanon(imp.reshaping(allData, i))
+        shanonEntropies[i, 1] = shanon
+    
+    return shanonEntropies
+
+#Calculates Simpson Entropy  
+def calculateSimpsonEntropy(allData):
+    simpsonEntropies = np.zeros((size, 2), dtype = float)
+    for i in range(size):
+        simpson = ent.shanon(imp.reshaping(allData, i))
+        simpsonEntropies[i, 1] = simpson
+    
+    return simpsonEntropies
+
+#Gets parameters from user info
+#fileName, sheet, size = userInfo()
+
+#Static parameters for testing
+fileName = 'Reformatted_W16_Math_Data'
+sheet = 'Sheet1'
+size = 51
+
+#Gets all data
+fullData = imp.reshapeData(imp.loadData(fileName, sheet), size)
+
+#Calculates entropies
+shanon = calculateShanonEntropy(fullData)
+simpson = calculateSimpsonEntropy(fullData)
