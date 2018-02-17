@@ -16,7 +16,7 @@ def userInfo():
     
     return fileName, relevantSheet, size
 
-#Calculates Shanon Entropy
+#Calculates Shanon Entropy -- Doesn't count supplemental exams!
 def calculateShanonEntropy(allData):
     shanonEntropies = np.zeros((size, 2), dtype = float)
     for i in range(size):
@@ -25,7 +25,7 @@ def calculateShanonEntropy(allData):
     
     return shanonEntropies
 
-#Calculates Simpson Entropy  
+#Calculates Simpson Entropy -- Doesn't count supplemental exams! 
 def calculateSimpsonEntropy(allData):
     simpsonEntropies = np.zeros((size, 2), dtype = float)
     for i in range(size):
