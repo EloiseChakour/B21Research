@@ -22,6 +22,7 @@ def calculateShanonEntropy(allData):
     for i in range(size):
         shanon = ent.shanon(imp.reshaping(allData, i))
         shanonEntropies[i, 1] = shanon
+        shanonEntropies[i, 0] = int(allData[i, 0])
     
     return shanonEntropies
 
@@ -31,6 +32,7 @@ def calculateSimpsonEntropy(allData):
     for i in range(size):
         simpson = ent.shanon(imp.reshaping(allData, i))
         simpsonEntropies[i, 1] = simpson
+        simpsonEntropies[i, 0] = int(allData[i, 0])
     
     return simpsonEntropies
 
