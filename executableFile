@@ -3,10 +3,13 @@
 import importingFiles as imp
 import entropies as ent
 
+
 #Import relevant libraries
 
 import numpy as np
 #from openpyxl import load_workbook
+import xlsxwriter
+
 
 #Gets the name of the excel file and the sheet from the user
 def userInfo():
@@ -16,7 +19,7 @@ def userInfo():
     
     return fileName, relevantSheet, size
 
-#Calculates Shanon Entropy -- Doesn't count supplemental exams!
+#Calculates Shanon Entropy
 def calculateShanonEntropy(allData):
     shanonEntropies = np.zeros((size, 2), dtype = float)
     for i in range(size):
@@ -26,7 +29,7 @@ def calculateShanonEntropy(allData):
     
     return shanonEntropies
 
-#Calculates Simpson Entropy -- Doesn't count supplemental exams! 
+#Calculates Simpson Entropy  
 def calculateSimpsonEntropy(allData):
     simpsonEntropies = np.zeros((size, 2), dtype = float)
     for i in range(size):
@@ -40,9 +43,9 @@ def calculateSimpsonEntropy(allData):
 #fileName, sheet, size = userInfo()
 
 #Static parameters for testing
-fileName = 'Reformatted_W16_Math_Data'
+fileName = 'F15_Math'
 sheet = 'Sheet1'
-size = 51
+size = 62
 
 #Gets all data
 fullData = imp.reshapeData(imp.loadData(fileName, sheet), size)
@@ -50,3 +53,26 @@ fullData = imp.reshapeData(imp.loadData(fileName, sheet), size)
 #Calculates entropies
 shanon = calculateShanonEntropy(fullData)
 simpson = calculateSimpsonEntropy(fullData)
+
+
+
+def saveIndex(array, nameOfFunction):
+    
+    name = str(nameOfFunction) + "_" +fileName
+    
+    workbook = xlsxwriter.Workbook(name + ".xlsx")
+    worksheet = workbook.add_worksheet()
+    
+    worksheet.write('A' + str(1), "Course Code")
+    worksheet.write('B' + str(1), nameOfFunction + " Index")
+    for i in range(2, len(array)):
+        worksheet.write('A'+ str(i), "Math " + str(int(array[i, 0])))
+        worksheet.write('B' + str(i), array[i, 1])
+
+    workbook.close()    
+
+
+
+
+saveIndex(shanon, "Shanon")
+saveIndex(simpson, "Simpson")
