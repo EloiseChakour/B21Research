@@ -16,6 +16,7 @@ pW16 = W16.parse('Sheet1')
 print(pW16)
 """
 #Loads data from a data file in the same folder
+#INSERT PATHS TO SIMPLIFY FILING EC
 def loadData(nameOfFile, sheetName):
     wb = load_workbook('./'+ nameOfFile +'.xlsx')
     sheet = wb.get_sheet_by_name(sheetName)
