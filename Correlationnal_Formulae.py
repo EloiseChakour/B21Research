@@ -5,7 +5,7 @@ Created on Mon Mar  5 16:41:52 2018
 
 @author: eloisechakour
 """
-import importingFiles as iF
+#import importingFiles as iF
 
 
 import numpy as np
@@ -22,8 +22,8 @@ def smallReshapeData(indexSheet, size):
     
     return Array
 
-#x = [1, 1, 1, 1, 1, 2]
-#y = [1 ,2, 3, 4, 5, 6]
+x = [1, 2, 3, 4, 5, 6]
+y = [1 ,2, 3, 4, 5, 6]
 
 def pearson(size, arrayOfDivIndices, arrayOfCompVar):
     xAvg = np.mean(arrayOfDivIndices)
@@ -44,11 +44,52 @@ def pearson(size, arrayOfDivIndices, arrayOfCompVar):
 #p = pearson(6, x, y)
 #print(p)
 
+#TODO: make something to check for and deal with repeated values. 
+def kendall(size, arrayOfDivIndices, arrayOfCompVar):
+    
+    counter1 = 0
+    counter2 = 0
+    
+    orderedArrayInd = [0 for j in range(size)]
+    orderedArrayComp = [0 for m in range(size)]
+    
+    i=0
+    for i in range(size):
+        if len(arrayOfDivIndices) != 0:
+            if arrayOfDivIndices[i] == max(arrayOfDivIndices):
+                orderedArrayInd[i] = counter1
+                arrayOfDivIndices = np.delete(arrayOfDivIndices, i)
+                counter1 += 1
+                print len(arrayOfDivIndices)
+        
+    k=0
+    for k in range(size):
+        if len(arrayOfDivIndices) != 0:
+            if orderedArrayComp[k] == max(arrayOfCompVar):
+                orderedArrayComp[k] = counter2
+                orderedArrayComp = np.delete(orderedArrayComp, k)
+                counter2 += 1
+            
+            
+    concordant = 0
+    discordant = 0
+    
+    for p in range(size):
+        if orderedArrayInd[p] == orderedArrayComp[p]:
+            concordant += 1
+            #print concordant
+        else:
+            discordant +=1
+            
+    t = 2*(concordant - discordant)/float((size*(size-1)))
+
+    
+    return t
 
 
+t = kendall(6, x, y)
 
-
-
+print t
 
 
 
