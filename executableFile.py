@@ -1,7 +1,7 @@
 #Import my files
 
 import importingFiles as imp
-import entropies as ent
+import DiversityIndices as ent
 
 
 #Import relevant libraries
