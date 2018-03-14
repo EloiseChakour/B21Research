@@ -5,6 +5,7 @@ import numpy as np
 #Shannon Index
 #Takes as input a 1D array of the percentages (in decimal form) for each grading method. An entry of 0 indicates that this method of evaluation wasn't used.
 
+#Note: doesn't connsider multiple grading schemes per class
 def shanon(arrayOfPercentages):
     shanon = 0
     for i in range(len(arrayOfPercentages)):
@@ -27,6 +28,7 @@ print(shanon(array3))
 # Simpson Index
 #Takes as input a 1D array of the percentages (in decimal form) for each grading method. An entry of 0 indicates that this method of evaluation wasn't used.
 
+#Note: doesn't connsider multiple grading schemes per class
 def simpson(arrayOfPercentages):
     sumOfp = 0
     for i in range(len(arrayOfPercentages)):
