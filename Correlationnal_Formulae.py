@@ -73,7 +73,7 @@ def kendall(size, arrayOfDivIndices, arrayOfCompVar):
                 orderedArrayInd[i] = counter1
                 arrayOfDivIndices = np.delete(arrayOfDivIndices, i)
                 counter1 += 1
-                print (len(arrayOfDivIndices))
+                #print (len(arrayOfDivIndices))
     
     #Order the comparison value.  
     k=0
@@ -103,8 +103,9 @@ def kendall(size, arrayOfDivIndices, arrayOfCompVar):
     return t
 
 
-#t = kendall(6, x, y)
-#print (t)
+t = kendall(6, x, y)
+print ("kendall")
+print (t)
 
 #Takes as input the size of the array (i.e. how many classes), an array of the diversity indices for each class and an array containing the variable we want to compare it to. The function outputs the Spearman Correlation Index.
     
@@ -118,19 +119,35 @@ def spearman(size, arrayOfDivIndices, arrayOfCompVar):
     counter2 = 0
     
     #Create the ordered values of the diversity indices array.
-    for i in range(size):
-        if max(arrayOfDivIndices) == arrayOfDivIndices[i]:
-            nArrayOfDivIndices[i] = counter1
-            arrayOfDivIndices[i] = -1000000
-            counter1 += 1
+    counterA = 0
+    for counterA in range(size):
+        for i in range(size):
+            if max(arrayOfDivIndices) == arrayOfDivIndices[i]:
+                nArrayOfDivIndices[i] = counter1
+                arrayOfDivIndices[i] = -1000000
+                counter1 += 1
+                #print (counter1)
+            if counter1 >= size-1:
+                #print (nArrayOfDivIndices)
+                break
+            counterA +=1
     
     #Create the ordered values of the comparison value.
-    for j in range(size):
-        if max(arrayOfCompVar) == arrayOfCompVar[j]:
-            nArrayOfCompVar[i] = counter2
-            arrayOfCompVar[j] = -1000000
-            counter2 += 1
+    counterB=0
+    for counterB in range(size):
+        for j in range(size):
+            if max(arrayOfCompVar) == arrayOfCompVar[j]:
+                nArrayOfCompVar[j] = counter2
+                arrayOfCompVar[j] = -1000000
+                counter2 += 1
+                #print(counter2)
+            if counter2 >= size-1:
+                #print (nArrayOfCompVar)
+                break
+            counterB += 1
         
+ 
+    
     #Find the numerator of the Spearman Index.
     pNum = 0
     for k in range(size):
@@ -145,8 +162,9 @@ def spearman(size, arrayOfDivIndices, arrayOfCompVar):
     
     return (1-p)
 
-#spearman = spearman(6, x, z)
-#print (spearman)
+spearman = spearman(6, x, z)
+print ("Spearman")
+print (spearman)
 
 
 
