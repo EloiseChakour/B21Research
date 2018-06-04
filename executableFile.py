@@ -43,9 +43,9 @@ def calculateSimpsonEntropy(allData):
 #fileName, sheet, size = userInfo()
 
 #Static parameters for testing
-fileName = 'F15_Math'
+fileName = 'F16_EngMath'
 sheet = 'Sheet1'
-size = 62
+size = 6
 
 #Gets all data
 fullData = imp.reshapeData(imp.loadData(fileName, sheet), size)
